@@ -1,0 +1,6 @@
+John 70
+Mary 50
+Joe 67
+Frank 90
+Gru 99
+Kiki 63

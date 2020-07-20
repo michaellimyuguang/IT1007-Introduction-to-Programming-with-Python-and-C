@@ -1,0 +1,68 @@
+Chapter 3 Arrays Solutions to Tutorial Problems
+================
+
+(3.1) 
+
+(a) Discussed in the lecture; 
+
+(b) String literal:
+
+#include<stdio.h>
+#include<string.h>
+
+main()
+{
+    char string[] = "NUS";
+    printf("the size of %s (expressed in # of bytes) is %d and the length is %d\n\n", string, sizeof(string), strlen(string));
+
+    strcpy(string, "Clementi");
+
+    printf("the size of %s (expressed in # of bytes) is %d and the length is %d\n\n", string, sizeof(string), strlen(string));
+    return 0;
+}
+
+
+Another Example for you to test and run!
+
+/* Use this code to run and learn!  use - pythontutor,com
+Each item below is a separate expt below.
+
+(1) first run as such and observe the way memory contents are 
+displayed; 
+(2) now change array[5] tp array[6] and run and see! 
+(3) Now use array[5]; Release the 3 lines from: char test[6] 
+and the next 2 lines and see what it does! You might have seen 
+an error! GO back and change to array[6] and run and see. 
+
+Message: If you attempt to use string.h functions then a string 
+need to end with a '\0' character. Or else it will be simply 
+treated as an array of characters. Remember this property! 
+
+=================== */
+#include<stdio.h>
+#include<string.h>
+
+int main() {
+  char array[5] = "abcde";
+  char string[] = "abcde";
+  /* char test[6];
+  strcpy(test,array);
+  printf("Test string = %s\n",test); */
+  printf("array = %s\n",array);
+  printf("string = %s\n",string);
+  return 0;
+}
+
+===============
+
+(3.2) Average  - Easy problem! Solution outline discussed in the lecture; 
+
+
+===================
+
+(3.3) - Discussed in the lecture - See the discussions file. 
+
+=========
+
+(3.4) - DIY - Discussed in the lecture - See the discussions file. 
+=========

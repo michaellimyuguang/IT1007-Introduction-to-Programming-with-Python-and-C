@@ -1,0 +1,191 @@
+Chapter 2 Tutorial Solutions 
+==========
+
+Tutorial 2.1(b)
+
+/*C program to check whether a character is VOWEL or CONSONANT using switch.*/
+ 
+#include <stdio.h>
+ 
+int main()
+{
+    char ch;
+     
+    printf("Enter a character: ");
+    scanf("%c",&ch);
+     
+    /* condition to check character is alphabet or not */
+    if((ch>='A' && ch<='Z') || (ch>='a' && ch<='z'))
+    {
+        //check for VOWEL or CONSONANT
+        switch(ch)
+        {
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                printf("%c is a VOWEL.\n",ch);
+                break;
+            default:
+                printf("%c is a CONSONANT.\n",ch);            
+        }
+    }
+    else
+    {
+        printf("%c is not an alphabet.\n",ch);
+    }
+ 
+    return 0;
+}
+
+==================================
+Tutorial 2.6
+
+(a) /*C program will print following Pyramid:
+     A
+    AB
+   ABA
+  ABAB
+ ABABA
+ABABAB
+*/
+
+
+(b) 
+
+#include <stdio.h>
+int main()
+{
+    double number, sum = 0;
+
+    /* loop body is executed at least once */
+    do
+    {
+        printf("Enter a number: ");
+        scanf("%lf", &number);
+        sum += number;
+    }
+    while(number != 0.0);
+
+    printf("Sum = %.2lf",sum);
+
+    return 0;
+}
+
+========
+
+(c) /* C program to design calculator with basic operations using switch.*/
+ 
+#include <stdio.h>
+ 
+int main()
+{
+    int num1,num2;
+    float result;
+    char ch;    //to store operator choice
+     
+    printf("Enter first number: ");
+    scanf("%d",&num1);
+    printf("Enter second number: ");
+    scanf("%d",&num2);
+     
+    printf("Choose operation to perform (+,-,*,/,%): ");
+    scanf(" %c",&ch);
+     
+    result=0;
+    switch(ch)    
+    {
+        case '+':
+            result=num1+num2;
+            break;
+             
+        case '-':
+            result=num1-num2;
+            break;
+         
+        case '*':
+            result=num1*num2;
+            break;
+             
+        case '/':
+            result=(float)num1/(float)num2;
+            break;
+             
+        case '%':
+            result=num1%num2;
+            break;
+        default:
+            printf("Invalid operation.\n");
+    }
+ 
+    printf("Result: %d %c %d = %f\n",num1,ch,num2,result);
+    return 0;
+}
+==============
+
+(d) 
+
+#include<stdio.h>
+int main() {
+  int i,j,N;
+  N=5; /* can be obtained from user */
+  i=0; 
+  while(i<N){
+    j=0;
+    while(j<N){
+      printf("(%d,%d) ",i,j);
+      j++;
+    }
+    printf("\n");
+    i++;
+  }
+  return 0;
+}
+===============
+
+(e) DNA sequence 
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main() {
+  int i,input,N;
+  /* initialize random seed: */
+	srand ( time(NULL) );
+	/* Generate a random number: */
+	/* number = rand() % 10 + 1;*/
+  N=15; /*  user can input this value too*/
+  i=0;
+  while(i < N) {
+    input = rand() % 4 + 1; /* from 1 to 4 */
+    /* printf("Input value = %d\n",input); */
+    switch(input){
+      case 1:
+        printf("A");
+        break;
+      case 2:
+        printf("G");
+        break;
+      case 3:
+        printf("C");
+        break;
+      case 4:
+        printf("T");
+        break;
+      default: 
+        printf("String generation completed\n");
+        break;
+    }
+    i++;    
+  }
+  return 0;
+}
+
+======================

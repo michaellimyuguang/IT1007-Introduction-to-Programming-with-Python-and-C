@@ -1,0 +1,363 @@
+GO TO - codepad.org / pythontutor.com / VS 2017 - PASTE THE FOLLOWING AND RUN AND SEE
+
+==========
+
+
+========== ========== 
+FUNCTIONS
+=========== ========== 
+
+Example 4.1 - Run and see!
+
+#include<stdio.h>
+void myadder(int a, int b); /* Function prototype; Observe the semicolon in this statement */
+/* ======== */
+int main(){
+    int x,y;
+    x =10;
+    y = 20;
+    myadder(x,y);  /* calling the function myadder */
+    printf("Bye Bye");
+}
+/* ========= */
+void myadder(int a,int b)
+{
+    int sum;
+    sum = a+b;
+    printf("Result of addition (from Func): %d\n",sum);
+    return;
+}
+
+
+=====================
+
+Example 4.1 - Run and see! Func returning a value;
+
+
+#include<stdio.h>
+/* Printing from the main function; Func returning the value */
+
+int myadder(int a, int b); /* Function prototype; observe the returning type */
+/* ======== */
+int main(){
+    int x,y,z;
+    x =10;
+    y = 20;
+    z = myadder(x,y); /* madder(..) is called, executed and the result is assigned to z */
+    printf("Result of addition: %d\n",z);
+}
+/* ========= */
+int myadder(int a,int b)
+{
+    int sum;
+    sum = a+b;
+    printf("Result of addition (from Func): %d\n",sum);
+    return(sum);
+}
+
+================================
+
+
+Tutorial 4.1 - Passing by Value
+
+
+
+/* (i)  Program demo for Passing parameters by Value */
+
+#include<stdio.h>
+void modify(int a); /* Function prototype */
+/* ======== */
+int main(){
+    int x;
+    x =10;
+    printf("Value of X (bef func call): %d\n\n”,x);
+    modify(x);
+    printf("Value of X (aft func call): %d\n\n”,x);
+}
+/* ========= */
+void modify(int a)
+{
+    a = a+1;
+    printf("Value of X (From the func after modifying x): %d\n\n”,a);
+    return;
+}
+====================================
+
+/* (ii) Program demo for Passing parameters by Value */
+/* In this program we will attempt to modify and pass the modified value */
+/*=========== */
+#include<stdio.h>
+int modify(int a); /* Function prototype */
+/* ======== */
+int main(){
+    int x,z;
+    x =10;
+    printf("Value of x (bef func call): %d\n\n”,x);
+    z = modify(x);
+    printf("Returned value from the func printed from main: %d\n\n”,z);
+    printf("Value of xA(aft func call): %d\n\n”,x);
+    x = z; 
+    printf("Value of x (aft assigning returned value: %d\n",x);
+
+}
+/* ========= */
+int modify(int a)
+{
+    a = a+1;
+    printf("Value of X (from func after modifying x): %d\n\n”,a);
+    return a;
+}
+
+====================================
+
+/* Example - How to pass Arrays? */
+
+#include<stdio.h>
+void myprint(int a[]); /* Function prototype */
+/* ======== */
+int main(){
+    int x[] = {1,2,3};
+    printf("Values in x array (bef func call): %d %d %d\n\n”,x[0],x[1],x[2]);
+    myprint(x); /* passing array is just mentioning the name of the array and its size */
+    printf("Values in x array (after func call): %d %d %d\n\n”,x[0],x[1],x[2]);
+}
+/* ========= */
+void myprint(int a[])
+{
+    printf("Values in your array (from func): %d %d %d\n\n”,a[0],a[1],a[2]);
+    return;
+}
+
+
+====================================
+
+/* Tutorial 4.2. Program for Passing Arrays (Passing by ref)- Special Case */
+
+#include<stdio.h>
+void modify(int a[], int n); /* Function prototype */
+/* ======== */
+int main(){
+    int k, x[] = {1,2,3};
+    printf("Size of an integer (in bytes) in this machine: %d\n\n”,sizeof(k));
+    printf("Size of your array x in bytes: %d\n\n”,sizeof(x));
+
+    k = (int)(sizeof(x)/sizeof(x[0])); /* Note: size of int depends on the CPU */
+    printf("Length of your array x: %d\n\n”, k);
+    printf("Values iObserve the semicolon in this statement x array (bef func call): %d %d %d\n\n”,x[0],x[1],x[2]);
+    modify(x,k); /* passing array is just mentioning the name of the array and its size */
+    printf("Values in x array (after func call): %d %d %d\n\n”,x[0],x[1],x[2]);
+}
+/* ========= */
+void modify(int a[], int n)
+{
+    int i;
+
+    for(i=0;i<n; i++){
+        a[i] = a[i]+10; 
+    }
+    printf("Values in x array (from func): %d %d %d\n\n”,a[0],a[1],a[2]);
+    return;
+}
+
+====================================
+
+/* Example 4.6 -  Program demo for Passing 2D Arrays; Need to DEBUG - Exercise */
+
+#include<stdio.h>
+#define ROWS 3
+#define COLS 3
+
+void myprint2(int array[][COLS]); /* no need to specify rows; cols is a must */
+/* ================== */
+
+
+void myprint2(int array[][COLS])
+{
+  int i, j;
+
+  for (i=0; i<ROWS; i++)
+  {
+    for (j=0; j<COLS; j++)
+    {
+      printf("%d ",array[i][j]);
+    }
+    printf("\n");
+  }
+  return;
+}
+/* ======================= */
+
+int main()
+{
+  int x[ROWS][COLS] = {{0,1,2},{3,4,5},{6,7,8}};
+  int i, j;
+
+  for (i=0; i<ROWS; i++)
+  {
+    for (j=0; j<COLS; j++)
+    {
+      printf("%d ",x[i][j]);
+    }
+    printf("\n");
+  }
+  printf("======== \n");
+  myprint2(x);  /* passing just by its name */
+  return 0;
+}
+
+====================================
+
+RECURSIONS 
+
+/* Tutorial 4.4 - (a)  Sum of Natural nums using Recursion */
+
+#include <stdio.h>
+int sum(int n); /* Func prototype;  */
+
+int main(){
+    int num = 10,add;
+    
+    add=sum(num);
+    printf("Sum of %d natural numbers is: %d",num, add);
+}
+/*---- */
+int sum(int n){
+    if(n==0)
+       return n;
+    else
+       return n+sum(n-1);    /*self call  to function sum() */
+}
+
+====================================
+
+/*  Factorial func without and with recursion */
+
+#include<stdio.h>
+/* Common way of writing a code to compute factorials */
+
+main() 
+{
+ int i,n;
+ long int fact;
+ n = 10;
+ fact = 1;
+ for(i=2;i<=n;i++)
+    fact = fact*i;
+ printf("Factorial %d is: %d\n",n,fact);
+}
+
+============ ====== =====
+
+Tutorial 4.3- (b) Factorial func with recursion
+
+#include<stdio.h>
+long int factorial(int n); /* func prototype */
+main() {
+    int n = 5; 
+
+    printf("n! = %d\n", factorial(n)); 
+}
+
+long int factorial(int n)
+{
+    if(n <=1)
+        return(1);
+    else
+        return(n*factorial(n-1)); /* Recursive calling happens here */
+}
+
+====================================
+
+Storage Class - External variables example
+
+/* Program demo using External variables */
+/*=========== */
+#include<stdio.h>
+void modify1(int a); /* Function prototype */
+void modify2(int b[]); /* Function prototype */
+
+int x;  /* external variable; non-array element */
+int X[2] = {0,1}; /* X is an array type */
+
+/* ======== */
+    int main(){
+    x = 10; /* Look here! We have not declared x inside main() */
+    printf("Value of x (bef func call): %d\n\n",x);
+    modify1(x);
+    printf("Value of x (From main() but after the func call: %d\n",x);
+printf(“\n”);
+    /* What is your observation ? */
+    
+    modify2(X); /* passing the global array X */
+    printf("Values of X (From main() but after the func call: %d, %d\n\n",X[0],X[1]);
+    /* What is your observation ? */
+    return(0);  
+}
+/* ========= */
+void modify1(int a)
+{
+    a = a+1;
+    printf("Value of X (From the func after modifying x): %d\n\n",a);
+    return;
+}
+
+void modify2(int b[])
+{
+    b[0] = b[0]+1;
+    b[1] = b[1] +1;
+    printf("Values of X (From the func after modifying array b): %d, %d\n\n",b[0],b[1]);
+    return;
+}
+==============================
+
+Understanding STATIC  & CONST variables [BONUS] 
+
+#include<stdio.h> 
+static int j = 0; /* variable can be updated; It is only the scope
+ that matters; This is a global static variable; Hence from any function 
+ within this file it can be accessed; See the up() and down() 
+ functions; */
+
+void up(void)
+{
+   /* k is set to 0 when the program starts. The line is then "ignored"
+    * for the rest of the program (i.e. k is not set to 0 every time up()
+    * is called)
+    */
+   static int k = 0;
+   const int p = 2;/* p is a read-only variable and its scope is limited 
+   to this function only; */
+   int m=0; /* every time this function is called m = 0 will be set;*/
+   m = 2*p;
+   j++;
+   k++;
+   printf("up() called.   m= %2d, k= %2d, j= %2d\n", m, k , j);
+}
+ 
+void down(void)
+{
+   static int k = 0;
+   j--;
+   k--;
+   printf("down() called. k= %2d, j= %2d\n", k , j);
+}
+ 
+int main(void)
+{
+   int i;
+     
+   /* call the up function 3 times, then the down function 2 times */
+   for (i = 0; i < 3; i++)
+      up();
+   for (i = 0; i < 2; i++)
+      down();
+    
+   return 0;
+}
+
+===============
+
+
+
+Tutorial 4.4 - See the Discussions File uploaded; 
+

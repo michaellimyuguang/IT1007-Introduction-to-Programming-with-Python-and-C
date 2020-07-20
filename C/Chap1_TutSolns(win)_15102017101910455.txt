@@ -1,0 +1,158 @@
+/* USE - codepad.org   OR   https://www.codechef.com/ide OR  pythontutor.com 
+=================
+
+#include<stdio.h>
+void main() {
+int x;
+float y, Area; 
+x = 2;
+y = 0.5467;
+Area = x*y;
+printf("The value of x is: %d\n", x);  /* Int */
+printf("The value of y is: %.6f\n",y); /* Float */
+printf("Area is: %.6f\n",Area);  /* formatted float  */
+printf("Area (in exp) is: %1.3e\n”,Area);  /* expo */
+
+}
+
+==========
+
+
+Tutorial Problem 1.1: Consider the inputs, double x = 5000, y = 0.0025.
+Print the respective outputs if you use: %e for printing x, y, x*y and x/y.
+
+
+#include<stdio.h>
+void main() {
+double x = 5000, y = 0.0025;
+printf("Value of x is:  %.e\n",x);
+printf("Value of y is:  %.e\n",y);
+printf("Value of x*y is:  %.e\n",x*y);
+printf("Value of x/y is:  %.e\n",x/y);
+return;
+}
+==========
+
+
+
+Tutorial Problem 1.2: Consider the input float x = 123.456. Print the
+respective outputs if you use %7.1f, %12.5e, and %12.3e, for printing x.
+
+
+#include<stdio.h>
+void main() {
+float x = 123.456;
+
+/* %7.1f, %12.5e, and %12.3e  */
+
+printf("Value of x is:  %f\n",x);
+printf("Value of x is:  %12.5e\n",x); /* observe the right justified output */
+printf("Value of x is:  %12.3e\n",x); /* compare this output with the previous one */
+return(0);
+}
+
+
+===================
+Tutorial 1.3
+
+#include <stdio.h>
+#include <limits.h>
+int main()
+{
+int a;
+char b;
+float c;
+double d;
+long int e;
+int myarray[10];
+printf("Storage size for int data type:%d \n",sizeof(a));
+printf("Storage size for char data type:%d \n",sizeof(b));
+printf("Storage size for float data type:%d \n",sizeof(c));
+printf("Storage size for double data type:%d\n",sizeof(d));
+printf("Storage size for long int data type:%d\n",sizeof(e));
+
+printf("Storage size for array data type:%d \n",sizeof(myarray));
+
+return 0;
+}
+
+=============
+Tutorial 1.7 Unary Operators
+
+Unary Operators - Try this!
+
+#include <stdio.h>
+int main() {
+    int x, y;
+    x = 10;
+    y = x++;
+    printf("1. y = x++ is: %d\n",y);
+    printf("1. x is: %d\n\n",x);
+    /*====== */
+    x = 10;
+    y = ++x;
+    printf("2. y= ++x is: %d\n",y);
+    printf("2. x is: %d\n\n",x);
+    /*====== */    
+    x = 10;
+    y = 0;
+    y = ++x;
+    y = y + ++x;
+    printf("3. y= ++x + ++x is: %d\n",y); 
+    printf("3. x is: %d\n\n",x);
+    /*====== */ 
+    x = 10;
+    y = 0;
+    y = ++x;
+    y = y + x++;
+    printf("4. y= ++x + x++ is: %d\n",y);
+    printf("4. x is: %d\n\n",x);
+    /*====== */ 
+    x = 10;
+    y = 0;
+    y = x++;  /* y gets 10; then x becomes 11 */
+    y = y + ++x; /* x becomes 12, y becomes 10+12 = 22 */
+    printf("5. y = x++ + ++x is: %d\n",y);
+    printf("5. x is: %d\n\n",x);
+    /*====== */ 
+    x = 10;
+    y = 0;
+    y = x++ + ++x;  /* This is same as above expression 5 without splitting; yields same result  */
+    printf("6. y = x++ + ++x is: %d\n",y);
+    printf("6. x is: %d\n",x);
+    /*====== */ 
+    /* This is an operation that depends on what compiler you are using */
+    /* So, if you want to use multiple terms that has this unary opeator, the 
+    trick is to split as shown in above; When compiled in codechef.com/ide I observe 
+    same results as per our understanding discussed in the lecture session. */
+    
+    /*====== Understand as follows: This is for expression (3) above====    
+    x = 10;
+    y = 0;
+         y ++x + ++x - scan from left to right
+    Value:  11  12 = 23
+        x:  11  12
+    
+    Output from codechef.com 
+1. y = x++ is: 10
+1. x is: 11
+
+2. y= ++x is: 11
+2. x is: 11
+
+3. y= ++x + ++x is: 23
+3. x is: 12
+
+4. y= ++x + x++ is: 22
+4. x is: 12
+
+5. y = x++ + ++x is: 22
+5. x is: 12
+
+6. y = x++ + ++x is: 22
+6. x is: 12
+    
+    ====== */ 
+	return 0;
+}
+==========================

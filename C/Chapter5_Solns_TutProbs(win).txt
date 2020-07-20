@@ -1,0 +1,234 @@
+====================================
+
+STRUCTURES - CODES TESTED BELOW
+
+#include<stdio.h>
+
+struct mydata {  /* see how we defined the struct here */
+    int x;
+    float y;
+};
+
+main(){
+    
+    struct mydata hisdata,herdata;  /* hisdata and herdata are of type mydata */
+
+    hisdata.x=10;
+    hisdata.y = 3.4;
+    herdata.x=100;
+    herdata.y = 4.3;
+
+    printf("From hisdata structure: %d, %f\n", hisdata.x, hisdata.y);
+
+    printf("From herdata structure: %d, %f\n", herdata.x, herdata.y);
+    printf("Size of the struct hisdata is: %d\n",sizeof(hisdata));
+}
+
+===================================
+
+#include<stdio.h>
+
+struct mydata {
+    int x;
+    float y;
+}d; /* d is of type mydata */
+
+main(){
+    
+    d.x=1;
+    d.y=0.1; 
+
+    printf("From d structure: %d, %f\n", d.x, d.y);
+
+}
+
+===================================
+
+#include<stdio.h>
+
+typedef struct {  /* see how we define struct here */
+    int x;
+    float y;
+}mydata; 
+
+main(){
+    mydata d,z; /* d and z are of type mydata */
+    d.x=1;
+    d.y=0.1;
+    z.x = 5;
+    z.y=0.99; 
+
+    printf("From d structure: %d, %f\n", d.x, d.y);
+    printf("From z structure: %d, %f\n", z.x, z.y);
+
+}
+===================================
+NESTED STRUCTS 
+
+#include<stdio.h>
+
+typedef struct {
+    int x;
+    float y;
+}mydata; 
+
+typedef struct {
+    int house_unit;
+    mydata q; /* q is of type mydata */
+    long int pincode;
+}HDBdata;
+
+main(){
+    HDBdata d,z; /* d and z are of type HDBdata */
+
+    d.house_unit=1;
+    d.q.x=1;
+    d.q.y=0.1;
+    d.pincode = 117576;
+
+    z.house_unit = 15;
+    z.q.x=2;
+    z.q.y=0.09;
+    z.pincode = 560012; 
+
+    printf("From d structure: %d, %d, %f, %d\n", d.house_unit, d.q.x, d.q.y, d.pincode);
+    printf("From z structure: %d, %d, %f, %d\n", z.house_unit, z.q.x, z.q.y, z.pincode);
+
+}
+===================
+
+COPYING AN ENTIRE STRUCT
+
+#include<stdio.h>
+
+struct mydata {
+    int x;
+    float y;
+}d,q; /* d, q are of type mydata */
+
+main(){
+    
+    d.x=1;
+    d.y=0.1; 
+
+    q = d; /* copying the entire d struct to q */
+
+    printf("From d structure: %d, %f\n", d.x, d.y);
+    printf("From q structure: %d, %f\n", q.x, q.y);
+
+
+}
+
+
+===========
+
+GLOBAL ARRAY USE 
+
+#include<stdio.h>
+
+typedef struct {
+    int x;
+    float y;
+}mydata; 
+
+mydata Alldata[3]; /* Global Array of structures */
+
+void mysplfunc(int k); /* Func prototype for Special Func */
+
+main() {
+
+	int i;
+	for(i=0; i<3; i++) 
+        {
+		Alldata[i].x = i+10;
+		Alldata[i].y = i*3.14;
+	}
+
+	for(i=0; i<3; i++) 
+        {
+               printf("Current Values: \n");
+		printf("Alldata[%d].x = %d\n", i, Alldata[i].x);
+		printf("Alldata[%d].y = %f\n\n", i, Alldata[i].y);
+               printf("Modified Values are: \n");
+               
+		mysplfunc(i); /* passing the index */
+               
+		printf("Alldata[%d].x = %d\n", i, Alldata[i].x);
+		printf("Alldata[%d].y = %f\n\n", i, Alldata[i].y);
+               printf("=========\n\n");
+	}
+    
+} /* end of main */
+
+void mysplfunc(int k) {
+	Alldata[k].x = Alldata[k].x + 10;
+	Alldata[k].y = Alldata[k].y *10.0;
+       return;
+}
+
+=============================
+
+Example 1: Passing array of structures to a function (like array passing)
+
+#include<stdio.h>
+typedef struct data{
+  int x;
+  float y;
+};
+
+struct data mydata[10]; /* array of structures */
+
+void func(struct data B[]); 
+
+int main() {
+  int i;
+  func(mydata);  /* Passing the array of structures! - just like array. No difference! */
+  for(i=0;i<10;i++)
+    printf("Data: mydata[%d].x = %d,mydata[%d].y = %f\n",i, mydata[i].x,i,mydata[i].y);
+  return 0;
+}
+
+void func(struct data B[]){
+
+  int j; 
+  for(j=0;j<10;j++){
+    mydata[j].x = j;
+    mydata[j].y = j+1.0;
+    printf("Data(from func): mydata[%d].x = %d,mydata[%d].y = %f\n",j,mydata[j].x,j,mydata[j].y);
+  }
+  printf("\n");
+  return;
+
+}
+
+====================
+
+Example 2: Passing structs to funcs
+
+#include<stdio.h>
+#include<string.h>
+typedef struct {
+  int x; 
+  char y[10];
+}data;
+data mydata[3];
+void func(data B[]);
+
+int main() {
+  int i;
+  func(mydata);
+  for(i=0;i<3; i++)
+    printf("%d), %d, %s\n", i, mydata[i].x,mydata[i].y);
+
+  return 0;
+}
+void func(data B[]){
+  int k;
+  for(k=0;k<3; k++){
+    B[k].x=k;
+    strcpy(B[k].y,"IT1007forU");
+  }
+  return;
+}
+
+============
